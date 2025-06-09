@@ -1,0 +1,189 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Model Comparison Report - Emotion Recognition</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background-color: #f5f5f5; }
+            .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+            h1 { color: #333; text-align: center; }
+            h2 { color: #666; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+            table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+            th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+            th { background-color: #f8f9fa; font-weight: bold; }
+            .metric-positive { color: #28a745; font-weight: bold; }
+            .metric-negative { color: #dc3545; font-weight: bold; }
+            .winner { background-color: #d4edda; }
+            .section { margin: 30px 0; }
+            .summary-box { background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0; }
+            .recommendation { background-color: #fff3cd; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Comparative Analysis: CNN vs SVM+HOG for Emotion Recognition</h1>
+            
+            <div class="summary-box">
+                <h2>Executive Summary</h2>
+                <p><strong>Best Overall Model:</strong> CNN 
+                   (+0.1606 accuracy difference)</p>
+                <p><strong>Fastest Training:</strong> SVM+HOG 
+                   (338.3 minutes difference)</p>
+            </div>
+            
+            <div class="section">
+                <h2>Performance Metrics Comparison</h2>
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>CNN</th>
+                        <th>SVM+HOG</th>
+                        <th>Difference</th>
+                        <th>Winner</th>
+                    </tr>
+                    <tr>
+                        <td>Test Accuracy</td>
+                        <td>0.6360</td>
+                        <td>0.4753</td>
+                        <td class="metric-positive">+0.1606</td>
+                        <td class="winner">CNN</td>
+                    </tr>
+                    <tr>
+                        <td>Training Time</td>
+                        <td>400.3 min</td>
+                        <td>61.9 min</td>
+                        <td>+338.3 min</td>
+                        <td class="winner">SVM+HOG</td>
+                    </tr>
+                    <tr>
+                        <td>Model Complexity</td>
+                        <td>618,727 parameters</td>
+                        <td>900 features</td>
+                        <td>-</td>
+                        <td>SVM+HOG (simpler)</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Per-Emotion Performance Analysis</h2>
+                <table>
+                    <tr>
+                        <th>Emotion</th>
+                        <th>CNN Accuracy</th>
+                        <th>SVM+HOG Accuracy</th>
+                        <th>Best Model</th>
+                    </tr>
+    
+                    <tr>
+                        <td>Angry</td>
+                        <td>0.5877</td>
+                        <td>0.3100</td>
+                        <td class="winner">CNN</td>
+                    </tr>
+        
+                    <tr>
+                        <td>Disgust</td>
+                        <td>0.4234</td>
+                        <td>0.0000</td>
+                        <td class="winner">CNN</td>
+                    </tr>
+        
+                    <tr>
+                        <td>Fear</td>
+                        <td>0.2822</td>
+                        <td>0.2480</td>
+                        <td class="winner">CNN</td>
+                    </tr>
+        
+                    <tr>
+                        <td>Happy</td>
+                        <td>0.8563</td>
+                        <td>0.7818</td>
+                        <td class="winner">CNN</td>
+                    </tr>
+        
+                    <tr>
+                        <td>Sad</td>
+                        <td>0.4571</td>
+                        <td>0.3978</td>
+                        <td class="winner">CNN</td>
+                    </tr>
+        
+                    <tr>
+                        <td>Surprise</td>
+                        <td>0.8135</td>
+                        <td>0.5066</td>
+                        <td class="winner">CNN</td>
+                    </tr>
+        
+                    <tr>
+                        <td>Neutral</td>
+                        <td>0.7307</td>
+                        <td>0.4517</td>
+                        <td class="winner">CNN</td>
+                    </tr>
+        
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Detailed Analysis</h2>
+                <h3>CNN Model Strengths:</h3>
+                <ul>
+                    <li>Automatic feature learning from raw pixel data</li>
+                    <li>Better performance on complex emotions</li>
+                    <li>Robust to variations in facial expressions</li>
+                    <li>State-of-the-art architecture with regularization</li>
+                </ul>
+                
+                <h3>SVM+HOG Model Strengths:</h3>
+                <ul>
+                    <li>Faster training time</li>
+                    <li>Lower computational requirements</li>
+                    <li>Interpretable features (HOG)</li>
+                    <li>Good performance with limited data</li>
+                </ul>
+                
+                <h3>Common Challenges:</h3>
+                <ul>
+                    <li>Both models struggle with similar emotions (fear/surprise, sad/neutral)</li>
+                    <li>Disgust emotion has lowest accuracy for both models</li>
+                    <li>Happy emotion is easiest to classify for both models</li>
+                </ul>
+            </div>
+            
+            <div class="recommendation">
+                <h2>Recommendations</h2>
+                <p><strong>Use CNN when:</strong></p>
+                <ul>
+                    <li>Accuracy is the primary concern</li>
+                    <li>Sufficient computational resources are available</li>
+                    <li>Real-time performance is not critical</li>
+                </ul>
+                
+                <p><strong>Use SVM+HOG when:</strong></p>
+                <ul>
+                    <li>Training time is limited</li>
+                    <li>Computational resources are constrained</li>
+                    <li>Model interpretability is important</li>
+                    <li>Quick prototyping is needed</li>
+                </ul>
+                
+                <p><strong>Future Improvements:</strong></p>
+                <ul>
+                    <li>Implement ensemble methods combining both models</li>
+                    <li>Use transfer learning with pre-trained models</li>
+                    <li>Collect more training data for underrepresented emotions</li>
+                    <li>Apply advanced data augmentation techniques</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Visualizations</h2>
+                <img src="model_comparison.png" alt="Model Comparison" style="max-width: 100%;">
+            </div>
+        </div>
+    </body>
+    </html>
+    

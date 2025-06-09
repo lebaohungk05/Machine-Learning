@@ -1,0 +1,75 @@
+,angry,disgust,fear,happy,sad,surprise,neutral
+angry,297,0,72,198,193,18,180
+disgust,45,0,10,24,26,2,4
+fear,127,0,254,184,216,80,163
+happy,64,0,65,1387,147,19,92
+sad,145,0,82,257,496,22,245
+surprise,45,0,98,110,75,421,82
+neutral,85,0,70,233,237,51,557
+
+Using 30% subset for faster training...
+
+Dataset Statistics:
+Training samples: 6889
+Validation samples: 1723
+Test samples: 7178
+
+Extracting HOG features...
+HOG feature vector size: 900
+
+============================================================
+🚀 USING OPTIMIZED TRAINING STRATEGY
+============================================================
+
+1️⃣ Testing Linear SVM (fastest)...
+   Linear SVM: 0.3569 accuracy in 417.2s
+
+2️⃣ Testing RBF SVM with default params...
+   RBF SVM: 0.4782 accuracy in 553.0s
+
+3️⃣ Fine-tuning best kernel...
+   → RBF kernel performed better, fine-tuning C and gamma...
+
+   Grid Search with 16 candidates...
+Fitting 3 folds for each of 16 candidates, totalling 48 fits
+
+   ✅ Best parameters: {'C': 1, 'gamma': 'scale'}
+   ✅ Best CV accuracy: 0.4609
+   ⏱️  Grid search time: 45.0 minutes
+
+   Validation accuracy: 0.4782
+
+==================================================
+FINAL EVALUATION ON TEST SET
+==================================================
+Test accuracy: 0.4753
+Test loss: 1.3762
+
+Confusion Matrix:
+          angry  disgust  fear  happy  sad  surprise  neutral
+angry       297        0    72    198  193        18      180
+disgust      45        0    10     24   26         2        4
+fear        127        0   254    184  216        80      163
+happy        64        0    65   1387  147        19       92
+sad         145        0    82    257  496        22      245
+surprise     45        0    98    110   75       421       82
+neutral      85        0    70    233  237        51      557
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       angry     0.3676    0.3100    0.3364       958
+     disgust     0.0000    0.0000    0.0000       111
+        fear     0.3902    0.2480    0.3033      1024
+       happy     0.5796    0.7818    0.6657      1774
+         sad     0.3568    0.3978    0.3762      1247
+    surprise     0.6868    0.5066    0.5831       831
+     neutral     0.4210    0.4517    0.4358      1233
+
+    accuracy                         0.4753      7178
+   macro avg     0.4003    0.3851    0.3858      7178
+weighted avg     0.4618    0.4753    0.4604      7178
+
+
+✨ Training completed in 61.9 minutes!
+   (Original approach would take ~4500 hours)
