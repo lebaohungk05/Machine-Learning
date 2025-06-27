@@ -13,6 +13,7 @@ class EmotionDetector:
         # Initialize MediaPipe Face Detection
         self.mp_face_detection = mp.solutions.face_detection
         self.face_detection = self.mp_face_detection.FaceDetection(
+            model_selection=0,  # 0 for short-range, 1 for full-range
             min_detection_confidence=0.5
         )
         
@@ -58,7 +59,7 @@ class EmotionDetector:
                 face_processed = self.preprocess_face(face_img)
                 
                 # Predict emotion
-                predictions = self.model.predict(face_processed)[0]
+                predictions = self.model.predict(face_processed, verbose=0)[0]
                 emotion_idx = np.argmax(predictions)
                 emotion = self.emotions[emotion_idx]
                 confidence = predictions[emotion_idx]
@@ -94,6 +95,10 @@ def main():
     
     # Initialize video capture
     cap = cv2.VideoCapture(0)
+
+    # Thiết lập cửa sổ full màn hình
+    cv2.namedWindow('Emotion Detection', cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty('Emotion Detection', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     
     while True:
         ret, frame = cap.read()
